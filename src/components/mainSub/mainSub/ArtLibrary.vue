@@ -147,7 +147,7 @@
     display: -webkit-flex;
     display: flex;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 18px;
     border-bottom: 1px solid #999999;
     h4 {
       margin-right: 50px;

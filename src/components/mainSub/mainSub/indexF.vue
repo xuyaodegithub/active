@@ -22,7 +22,7 @@
          </ul>&ndash;&gt;
       </div>
     </div>-->
-    <v-card :leftData="leftData"></v-card>
+    <v-super :leftData="leftData"></v-super>
     <div>
       <vthree-card :msg="shareimg"></vthree-card>
     </div>
@@ -93,6 +93,7 @@
   import {mapActions} from 'vuex'
   import vCard from '../../publicSub/cardSub.vue'
   import vthreeCard from '../../publicSub/threecardSub.vue'
+  import vSuper from '../../publicSub/superStar.vue'
 
   export default {
     name: 'first',
@@ -100,6 +101,8 @@
       return {
         leftData: {
           title: '名家风采',type:false, item: [
+            {title: '瓷器', imgName: '',imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'},
+            {title: '瓷器', imgName: '',imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'},
             {title: '瓷器', imgName: '',imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'},
             {title: '玉器', imgName: '',imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182727570&di=142c0b3eb232c9b1dfdf6c7a2c5597b0&imgtype=0&src=http%3A%2F%2Fimg000.hc360.cn%2Fg8%2FM06%2FCC%2F94%2FwKhQtlQasGyEXM18AAAAAIWKz4Y519.jpg'},
             {title: '字画', imgName: '',imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182727568&di=6e4eb061e274af3d89f46f7fbdf6b102&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D92387e7a80d4b31ce4319cfbeeae4213%2F09fa513d269759eee5b805f2b9fb43166d22df1b.jpg'},
@@ -145,7 +148,7 @@
       ...mapGetters([])
     },
     components: {
-      vCard,vthreeCard
+      vCard,vthreeCard,vSuper
     },
     methods:{
       toDetial(item){
@@ -243,6 +246,9 @@
           width:75%;
         }
       }
+    }
+    .newscenter:last-child{
+      flex: 1;
     }
   }
 </style>

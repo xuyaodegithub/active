@@ -21,7 +21,7 @@
     name: 'callUs',
     data() {
       return {
-        imgimg:'static/qqqqq.jpg'
+        imgimg:'static/qqqq.jpg'
       }
     },
     computed: {

@@ -187,6 +187,8 @@
 <style scoped lang="scss">
   .auction {
     padding: 0px 12px;
+    border:1px solid #999999;
+    margin: 15px 0;
     ul {
       display: -webkit-box;
       display: -moz-box;
@@ -197,7 +199,7 @@
       flex-wrap: wrap;
       li {
         width: 190px;
-        margin-right: 13px;
+        margin-right: 12px;
         padding: 5px;
         &:nth-child(6n) {
           margin-right: 0;
@@ -222,10 +224,10 @@
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    margin-top: 15px;
-    font-size: 16px;
+    /*margin-top: 15px;*/
+    font-size: 18px;
     line-height: 28px;
-    padding: 10px 15px;
+    padding:15px;
     border-bottom: 1px solid #999999;
     h4 {
       margin-right: 80px;
