@@ -1,12 +1,12 @@
 <template>
       <div class="card">
           <div class="Cheader">
-            <h4>{{leftData.title}}</h4>
-            <p>更多</p>
+            <h4>名家风采</h4>
+            <p v-if="isShow" class="cu" @click="tomove()">更多</p>
           </div>
         <ul>
-            <li v-for="(item,index) in leftData.item" class="cu" @click="toDetial(item)">
-              <img :src="item.imgUrl" alt="">
+            <li v-for="(item,index) in leftData" class="cu" @click="toDetial(item)">
+              <img :src="item.titleImg" alt="">
               <p>{{item.title}}</p>
             </li>
         </ul>
@@ -31,7 +31,7 @@
   import {mapActions} from 'vuex'
   export default {
     name: 'super',
-    props:['leftData'],
+    props:['leftData','isShow'],
     data() {
       return {
         currentPage5:1,
@@ -51,7 +51,11 @@
 
       },
       toDetial(item){
-        this.$router.push('/artDetial?id='+12)
+        this.$router.push('/supDetial?id='+item.id)
+        this.$store.commit('SUP_DETIALS_CHANGE',item.content)
+      },
+      tomove(){
+        this.$router.push('/concatUs')
       }
     }
   }
@@ -87,10 +91,15 @@
         display: -webkit-flex;
         display: flex;
         padding: 10px 5px 5px 5px;
-        justify-content: space-between;
+        /*justify-content: space-between;*/
+        flex-wrap: wrap;
         li {
           width:120px;
-          /*margin-right: 35px;*/
+          margin-right: 44px;
+          margin-bottom: 10px;
+          &:nth-child(8n){
+            margin-right: 0;
+          }
           img{
             display: block;
             width:100%;

@@ -4,10 +4,10 @@
       <div class="nleft">
         <div class="ntop">
           <h4>政策法规</h4>
-          <span class="cu">更多</span>
+          <!--<span class="cu">更多</span>-->
         </div>
         <ul class="nbottom">
-          <li v-for="(item,index) in news" :key="index" class="over cu"  @click="toDetial(item)">
+          <li v-for="(item,index) in oneNewsResult.list" :key="index" class="over cu"  @click="toDetial(item)">
             {{item.title}}
           </li>
         </ul>
@@ -18,10 +18,10 @@
             @current-change="handleCurrentChange"
             :pager-count="5"
             :current-page="currentPage4"
-            :page-sizes="[10, 20, 30, 40]"
+            :page-sizes="[5, 10, 15]"
             :page-size="rows"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="oneNewsResult.pager ? oneNewsResult.pager.totalRows : 0">
           </el-pagination>
         </div>
       </div>
@@ -29,12 +29,12 @@
     <div class="Nright">
       <div class="ntop">
         <h4>新闻动态</h4>
-        <span class="cu">更多</span>
+        <!--<span class="cu">更多</span>-->
       </div>
       <ul class="nbottom">
-        <li v-for="val in newsList" class="cu" @click="toDetial(val)">
+        <li v-for="val in threeNewsResult.list" class="cu" @click="toDetial(val)">
           <p class="over">{{val.title}}</p>
-          <p>{{val.timer}}</p>
+          <p>{{val.publishTime | changeTime}}</p>
         </li>
       </ul>
       <div class="block">
@@ -44,10 +44,10 @@
           @size-change="handleSizeChangeNews"
           @current-change="handleCurrentChangeNews"
           :current-page="currentPage5"
-          :page-sizes="[10, 20, 30, 40]"
+          :page-sizes="[5, 10, 15]"
           :page-size="Newsrows"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="threeNewsResult.pager ? threeNewsResult.pager.totalRows : 0">
         </el-pagination>
       </div>
     </div>
@@ -65,8 +65,8 @@
         msg: 'gogogo',
         currentPage4:1,
         currentPage5:1,
-        Newsrows:10,
-        rows:10,
+        Newsrows:5,
+        rows:5,
         news: [
           {title: '考古发掘品移交管考古发掘品移交管考古发掘品移交管', url: ''}, {
             title: '考古发掘品移交管考古发掘品移交管考古发掘品移交管',
@@ -112,24 +112,70 @@
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'oneNewsResult','threeNewsResult'
+      ])
     },
-    components: {},
+    mounted(){
+      let data={
+        type:1,
+        page:1,
+        limit:5
+      }
+      let obj={
+        type:3,
+        page:1,
+        limit:5
+      }
+      this.oneNewsActions(data)
+      this.oneNewsActions(obj)
+    },
+    components: {
+
+    },
     methods:{
+      ...mapActions([
+        'oneNewsActions'
+      ]),
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+//        console.log(`每页 ${val} 条`);
+        this.rows=val
+        this.getlist(1)
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+      this.currentPage4=val
+        this.getlist(1)
       },
      handleSizeChangeNews(val) {
-        console.log(`每页 ${val} 条`);
+//        console.log(`每页 ${val} 条`);
+       this.Newsrows=val
+       this.getlist(3)
       },
       handleCurrentChangeNews(val) {
-        console.log(`当前页: ${val}`);
+//        console.log(`当前页: ${val}`);
+        this.currentPage5=val
+        this.getlist(3)
       },
       toDetial(item){
-        this.$router.push('/newsDetial')
+        this.$router.push('/newsDetial?id='+item.id)
+        this.$store.commit('NEWS_DETIALS_CHANGE',item.content)
+      },
+      getlist(key){
+        if(key===1){
+          let data={
+            type:1,
+            page:this.currentPage4,
+            limit:this.rows
+          }
+          this.oneNewsActions(data)
+        }else{
+          let data={
+            type:3,
+            page:this.currentPage5,
+            limit:this.Newsrows
+          }
+          this.oneNewsActions(data)
+        }
       }
     }
   }
@@ -160,7 +206,7 @@
     }
     .block{
       margin: 10px 0 30px 0;
-      text-align: right;
+      text-align: center;
     }
     .nbottom {
       // padding:0 15px;

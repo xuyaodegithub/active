@@ -1,12 +1,12 @@
 <template>
   <div class="isSwiper">
-      <div class="margin">
-        <el-carousel :interval="2000" arrow="always">
-          <el-carousel-item v-for="item in imgdata" :key="item">
-            <img :src="item" alt="">
-          </el-carousel-item>
-        </el-carousel>
-      </div>
+    <div class="margin">
+      <el-carousel :interval="2000" arrow="always">
+        <el-carousel-item v-for="(item,index) in indexDataResult.obj.bigPictureList" :key="index">
+          <img :src="item.titleImg" alt="">
+        </el-carousel-item>
+      </el-carousel>
+    </div>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
     name: 'lunBo',
     data() {
       return {
-        imgdata:[
+        imgdata: [
           'http://ol-quan2017.oss-cn-shanghai.aliyuncs.com/be0ddcdf2857c24303764dda630eb513c82060e5',
           'http://ol-quan2017.oss-cn-shanghai.aliyuncs.com/244f433621701916c56536b0c3821e8a78265897',
           'http://ol-quan2017.oss-cn-shanghai.aliyuncs.com/519cb1eb25f895b7d3fd1f412c82a3cf02936b63',
@@ -28,15 +28,13 @@
     },
     computed: {
       ...mapGetters([
-
+        'indexDataResult'
       ])
     },
     mounted() {
 
     },
-    methods: {
-
-    }
+    methods: {}
   }
 </script>
 
@@ -57,9 +55,10 @@
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
-  img{
+
+  img {
     display: block;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
   }
 </style>

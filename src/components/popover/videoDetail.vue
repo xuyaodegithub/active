@@ -4,7 +4,7 @@
       <span class="title">视频详情</span><i v-on:click="popoverAlert()" class="el-icon-close"></i>
     </div>
     <div class="popover-main">
-      <video id="playVideo" :src="popoverAlive.SSSnum"  controls :poster="imgName" @click="toplay()" ref="video" class="cu" width="700" height="400">
+      <video id="playVideo" :src="popoverAlive.SSSnum"  controls  @click="toplay()" ref="video" class="cu" width="700" height="400">
         <source :src="popoverAlive.SSSnum" type="video/mp4">
         <source :src="popoverAlive.SSSnum" type="video/ogg">
         <source :src="popoverAlive.SSSnum" type="video/webm">

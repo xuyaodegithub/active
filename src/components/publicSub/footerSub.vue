@@ -3,7 +3,7 @@
     <div class="margin mtop">
       <p>友情链接</p>
       <ul>
-        <li v-for="(item, index) in msg" :key="index" class="cu">
+        <li v-for="(item, index) in msg" :key="index" class="cu" @click="toUrl(item)">
           {{item.title}}
         </li>
       </ul>
@@ -23,8 +23,9 @@ export default {
   data () {
     return {
       msg: [
-        {title:'中国收藏家协会',url:''},{title:'中国艺术品收藏家协会',url:''},{title:'河南省收藏家协会',url:''},
-        {title:'浙江省收藏家协会',url:''},{title:'安徽省收藏家协会',url:''},
+        {title:'国家AAAAA级旅游景区—横店影视城官网，提供横店影视城门票、酒店、旅游套餐等预订服务',url:' http://www.hengdianworld.com/'},
+        {title:'横店集团控股有限公司',url:'http://www.hengdian.com/'},{title:'圆明新园|横店圆明新园门票|横店圆明园新园官方网站 ',url:' http://www.hdyuanmingxinyuan.com/'},
+//        {title:'浙江省收藏家协会',url:''},{title:'安徽省收藏家协会',url:''},
       ],
 
     }
@@ -35,7 +36,9 @@ export default {
     ])
   },
   methods:{
-
+    toUrl(item){
+      window.open(item.url)
+    }
   }
 }
 </script>

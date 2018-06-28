@@ -3,8 +3,8 @@
     <div class="back">
       <span class="cu icon iconfont icon-fanhui1" @click="back()">返回</span>
     </div>
-    <div style="padding: 15px 140px;">
-      <div class="title">
+    <div style="padding: 15px 140px;" v-html="artsDetialsResult">
+      <!--<div class="title">
         小叶紫檀笔洗
       </div>
       <div class="imgD">
@@ -26,7 +26,7 @@
         </p>
         <p>
           拉方代表团团长感谢李克强会见，高度赞赏中方成功主办中拉论坛首届部长级会议。拉共体“四架马车”—哥斯达黎加、厄瓜多尔、古巴益。本次会议为拉中在新时期建立全新伙伴关系奠定了基础。拉方愿同中方把握机遇，携手努力，推动拉中关系与合作取得新的发展，为地区和世界的和平稳定与发展繁荣作出更大贡献。</p>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -50,7 +50,9 @@
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'artsDetialsResult'
+      ])
     },
     components: {},
     mounted(){

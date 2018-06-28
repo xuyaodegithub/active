@@ -2,14 +2,14 @@
       <div class="card">
           <div class="Cheader">
             <h4>艺术文库</h4>
-            <p>更多</p>
+            <p @click="toMove()" class="cu">更多</p>
           </div>
         <ul>
           <li class="cup">
-            <p v-for="item in leftData" class="cu" @click="changeType(item)">{{item.title}}</p>
+            <p v-for="(item,index) in leftData" class="cu" @click="changeType(item,index)" :class="{activeP : activekey===index}">{{item.title}}</p>
           </li>
-          <li v-for="(item,index) in msg.item" style="width: 190px;padding: 5px;" class="cu fiveTe" :class="{activeFive : index===4}" @click="toDetial(item)">
-            <img :src="item.imgUrl" alt="">
+          <li v-for="(item,index) in dataList" style="width: 190px;padding: 5px;" class="cu fiveTe" :class="{activeFive : index===4}" @click="toDetial(item)">
+            <img :src="item.titleImg" alt="">
             <p>{{item.title}}</p>
           </li>
         </ul>
@@ -37,6 +37,7 @@
     props:['msg'],
     data() {
       return {
+        activekey:0,
         currentPage5:1,
         Newsrows:10,
         leftData: [
@@ -46,15 +47,34 @@
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'indexDataResult'
+      ]),
+      dataList(){
+        if(this.activekey===0){
+          return this.indexDataResult.obj.porcelainList
+        }else if(this.activekey===1){
+          return this.indexDataResult.obj.jadewareList
+        }else if(this.activekey===2){
+          return this.indexDataResult.obj.paintingsList
+        }else if(this.activekey===3){
+          return this.indexDataResult.obj.metalwareList
+        }else if(this.activekey===4){
+          return this.indexDataResult.obj.miscellaneousList
+        }
+      }
     },
     components: {},
     methods:{
-      changeType(item){
-
+      changeType(item,key){
+          this.activekey=key
       },
       toDetial(item){
-        this.$router.push('/artDetial?id='+12)
+        this.$router.push('/artDetial?id='+item.id)
+        this.$store.commit('ARTS_DETIALS_CHANGE',item.content)
+      },
+      toMove(){
+        this.$router.push('/ArtLibrary')
       }
     }
   }
@@ -90,6 +110,9 @@
         display: -webkit-flex;
         display: flex;
         padding: 10px 5px 5px 5px;
+        .activeP{
+          color:#bd2c00;
+        }
         li:first-child{
           border-right: 1px solid #999999;
           margin-right: 15px;

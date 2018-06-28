@@ -1,35 +1,31 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="leftData.length>0">
     <div class="rTop">
-      <h4>{{leftData.title}}</h4>
+      <h4>{{title}}</h4>
     </div>
-    <ul :class="{teactive : leftData.item.length>6}">
-      <li v-for="item in leftData.item" v-if="leftData.item.length===5" style="width: 190px;padding: 5px;margin-right: 25px" class="cu" @click="toDetial(item)">
-        <img :src="item.imgName" alt="" :class="{active : !leftData.type  }" style="display: block;width: 100%;height: 190px;">
-        <!--<p v-if="leftData.type">{{item.title}}</p>-->
+    <ul>
+      <li v-for="(item,index) in leftData" v-if="leftData.length<=6" style="width: 190px;padding: 5px;" class="cu" :class="{addmar :index!==5}" @click="toDetial(item)">
+        <img :src="item.titleImg" alt="" style="display: block;width: 100%;height: 190px;">
+        <p>{{item.title}}</p>
       </li>
-      <li v-for="(item,index) in leftData.item" v-if="leftData.item.length===6" style="width: 190px;padding: 5px;" class="cu" :class="{addmar :index!==5}" @click="toDetial(item)">
-        <img :src="item.imgName" alt="" :class="{active : !leftData.type  }" style="display: block;width: 100%;height: 190px;">
-        <p v-if="leftData.type">{{item.title}}</p>
-      </li>
-      <li v-for="item in leftData.item" v-if="leftData.item.length>6" style="width: 190px;padding: 5px;" class="cu teimg" @click="toDetial(item)">
-        <img :src="item.imgName" alt="" :class="{active : !leftData.type  }" style="display: block;width: 100%;height: 190px;">
-        <p v-if="leftData.type">{{item.title}}</p>
+      <li v-for="item in leftData" v-if="leftData.length>6" style="width: 190px;padding: 5px;" class="cu teimg" @click="toDetial(item)">
+        <img :src="item.titleImg" alt="" style="display: block;width: 100%;height: 190px;">
+        <p>{{item.title}}</p>
       </li>
     </ul>
-    <div class="block" v-if="leftData.item.length>6 && leftData.block">
-      <el-pagination
-        small
-        :pager-count="5"
-        @size-change="handleSizeChangeNews"
-        @current-change="handleCurrentChangeNews"
-        :current-page="currentPage5"
-        :page-sizes="[10, 20, 30, 40]"
-        :page-size="Newsrows"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
-      </el-pagination>
-    </div>
+    <!--<div class="block" v-if="leftData.item.length>6 && leftData.block">-->
+      <!--<el-pagination-->
+        <!--small-->
+        <!--:pager-count="5"-->
+        <!--@size-change="handleSizeChangeNews"-->
+        <!--@current-change="handleCurrentChangeNews"-->
+        <!--:current-page="currentPage5"-->
+        <!--:page-sizes="[10, 20, 30, 40]"-->
+        <!--:page-size="Newsrows"-->
+        <!--layout="total, sizes, prev, pager, next, jumper"-->
+        <!--:total="400">-->
+      <!--</el-pagination>-->
+    <!--</div>-->
   </div>
 </template>
 
@@ -38,7 +34,7 @@
   import {mapActions} from 'vuex'
   export default {
     name: 'Tcard',
-    props:['leftData'],
+    props:['leftData','title'],
     data() {
       return {
         currentPage5:1,
@@ -59,14 +55,8 @@
       ...mapActions([
         'popoverAlert'
       ]),
-      handleSizeChangeNews(val) {
-        console.log(`每页 ${val} 条`);
-      },
-      handleCurrentChangeNews(val) {
-        console.log(`当前页: ${val}`);
-      },
       toDetial(item){
-        this.popoverAlert(['vVideo',item.imgUrl])
+        this.popoverAlert(['vVideo',item.videoUrl])
       }
     }
   }
@@ -117,10 +107,6 @@
           width:100%;
           height: 162px;
         }
-        img.active{
-          height:100%;
-          width:100%;
-        }
         p{
           margin-top: 12px;
           text-align: center;
@@ -129,9 +115,6 @@
         }
       }
     }
-  }
-  .teactive{
-    flex-wrap: wrap;
   }
   li.teimg{
     margin-right: 13px;

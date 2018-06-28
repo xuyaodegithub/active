@@ -3,17 +3,18 @@
     <div class="Atop">
       <h4>艺术文库</h4>
       <ul>
-        <li v-for="(item,index) in navList" class="cu">
+        <li v-for="(item,index) in navList" class="cu" :class="{activeLi : whichkey===index}"
+            @click="changeType(item,index)">
           {{item.title}}
         </li>
       </ul>
     </div>
-     <ul class="Abuttom">
-       <li v-for="(item,index) in artList" class="cu" @click="toDetial(item)">
-         <img :src="item.lmgUrl" alt="">
-         <p>{{item.title}}</p>
-       </li>
-     </ul>
+    <ul class="Abuttom">
+      <li v-for="(item,index) in artsBookResult.list" class="cu" @click="toDetial(item)">
+        <img :src="item.titleImg" alt="">
+        <p>{{item.title}}</p>
+      </li>
+    </ul>
     <!--<v-card :msg=""></v-card>-->
     <div class="block">
       <el-pagination
@@ -22,10 +23,10 @@
         @current-change="handleCurrentChange"
         :pager-count="5"
         :current-page="currentPage4"
-        :page-sizes="[10, 20, 30, 40]"
+        :page-sizes="[18, 30, 40, 50]"
         :page-size="rows"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="400">
+        :total="artsBookResult.pager ? artsBookResult.pager.totalRows : 0">
       </el-pagination>
     </div>
   </div>
@@ -39,94 +40,61 @@
     name: 'Art',
     data() {
       return {
+        whichkey: 0,
         currentPage4: 1,
-        rows: 10,
+        rows: 18,
+        type: '',
         navList: [
           {title: '全部', url: ''}, {title: '瓷器', url: ''}, {title: '玉器', url: ''},
           {title: '字画', url: ''}, {title: '金属器', url: ''}, {title: '杂项', url: ''},
         ],
-        artList: [
-          {
-            title: '图一',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图二',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图三',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图四',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图五',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图六',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图七',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图八',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图九',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十一',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十二',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十三',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十四',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十五',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-          {
-            title: '图十六',
-            lmgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-          },
-        ]
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'artsBookResult'
+      ])
     },
-    components: {
+    components: {},
+    mounted() {
+      this.getsomeLsit()
     },
     methods: {
+      ...mapActions([
+        'artsBookActions'
+      ]),
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+//        console.log(`每页 ${val} 条`);
+        this.rows = val
+        this.getsomeLsit()
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+//        console.log(`当前页: ${val}`);
+        this.currentPage4 = val
+        this.getsomeLsit()
       },
-      toDetial(item){
-        this.$router.push('/artDetial?id='+12)
+      toDetial(item) {
+        this.$router.push('/artDetial?id=' + item.id)
+        this.$store.commit('ARTS_DETIALS_CHANGE',item.content)
+      },
+      changeType(val, key) {
+        this.whichkey = key
+        this.currentPage4 = 1
+        this.rows = 18
+        if(key>0){
+          this.type=key
+        }else{
+          this.type=''
+        }
+        this.getsomeLsit()
+      },
+      getsomeLsit() {
+        let data = {
+          "page": this.currentPage4,
+          "limit": this.rows,
+          "type": this.type
+        }
+        this.artsBookActions(data)
       }
     }
   }
@@ -155,6 +123,10 @@
     }
     ul {
       display: flex;
+      .activeLi {
+        color: #bd2c00;
+        /*border-bottom: 1px solid #bd2c00;*/
+      }
       li {
         margin-right: 30px;
       }

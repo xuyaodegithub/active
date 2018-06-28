@@ -1,25 +1,31 @@
 <template>
   <div>
     <div class="header">
+      <!--<div class="margin" style="font-size: 14px;text-align: right;padding-right: 15px;padding-top: 5px;">-->
+        <!--您好！ 请先  &nbsp&nbsp&nbsp&nbsp <span style="color:#ee0707;">登录</span>-->
+      <!--</div>-->
       <div class="top margin">
         <div class="logo Mright" style="margin: 34px 15px 0 10px;">
           <img src="static/ball.png" alt="" style="width: 80px;height: 80px;">
         </div>
-        <div class="title Mright" style="margin: 39px 29px 0 0;">
-          <h4><img src="static/logo.png" alt="" style="margin-left: -30px;"></h4>
-          <p><img src="static/logob.png" alt="" style="margin-left: -10px"></p>
+        <div class="title Mright" style="margin: 39px 500px 0 0;">
+          <!--<h4><img src="static/logo.png" alt="" style="margin-left: -100px;"></h4>-->
+          <p><img src="static/ziti.png" alt="" style="height:80px;"></p>
         </div>
         <div class="seach Mright" style="margin: 70px 29px 0 0;">
           <el-input v-model="isInput" placeholder="请输入感兴趣的内容" prefix-icon="el-icon-search" size="small"></el-input>
-          <el-button type="danger" size="small" style="display: inline-block;">搜索</el-button>
+          <el-button type="danger" size="small" style="display: inline-block;" @click="seachData()">搜索</el-button>
         </div>
         <div class="date">
+          <p style="font-size: 14px;text-align: right;line-height: 18px;padding-top: 5px;">
+            您好！ 请先  &nbsp&nbsp&nbsp <span style="color:#ee0707;" class="cu" @click="toLogin()">登录</span>
+          </p>
           <p>{{isTime}}</p>
           <p>{{iscTime}}</p>
           <div class="imgSS" style="display: inline-block;">
             <i class="icon iconfont icon-erweima"></i>
             扫一扫
-            <img src="http://www.hnscjxh.cn/Them/ewm.jpg" alt="">
+            <img :src="imgUrl" alt="" style="width: 150px;height: 150px;">
           </div>
         </div>
       </div>
@@ -27,26 +33,26 @@
     <div class="navList">
       <div class="margin">
         <ul>
-          <li v-for="(item,index) in navList" :key="index" class="cu" @click="changeRoute(item)">
+          <li v-for="(item,index) in navList" :key="index" class="cu" @click="changeRoute(item,index)" :class="{activeColor : colorNum===index}">
             {{item.title}}
           </li>
-          <li class="hoverT">
-            <!-- 了解我们
-             <div style="display: none;position: absolute;">
-               <p>加入我们</p>
-               <p>联系我们</p>
-             </div>-->
-            <el-dropdown @command="handleCommand" :show-timeout="100">
-  <span class="el-dropdown-link">
-    了解我们<i class="el-icon-arrow-down el-icon--right"></i>
-  </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="a">加入我们</el-dropdown-item>
-                <el-dropdown-item command="b">联系方式</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+          <!--<li class="hoverT">-->
+            <!--&lt;!&ndash; 了解我们-->
+             <!--<div style="display: none;position: absolute;">-->
+               <!--<p>加入我们</p>-->
+               <!--<p>联系我们</p>-->
+             <!--</div>&ndash;&gt;-->
+            <!--<el-dropdown @command="handleCommand" :show-timeout="100">-->
+  <!--<span class="el-dropdown-link">-->
+    <!--了解我们<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+  <!--</span>-->
+              <!--<el-dropdown-menu slot="dropdown">-->
+                <!--<el-dropdown-item command="a">加入我们</el-dropdown-item>-->
+                <!--<el-dropdown-item command="b">联系方式</el-dropdown-item>-->
+              <!--</el-dropdown-menu>-->
+            <!--</el-dropdown>-->
 
-          </li>
+          <!--</li>-->
         </ul>
         <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
            <el-tab-pane label="首页" name="first">首页</el-tab-pane>
@@ -70,18 +76,20 @@
   import {mapGetters} from 'vuex'
   import {mapActions} from 'vuex'
   import vSwiper from './lunBo.vue'
-
+  import {Base64} from 'js-base64';
   export default {
     name: 'header1',
     data() {
       return {
+        imgUrl: 'static/ewmll.jpg',
+//        colorNum:0,
         isTime: '',
         msg: '',
         activeName: 'first',
         iscTime: '',
         isInput: '',
         navList: [
-          {title: '首页', routeUrl: '/'}, {title: '协会简介', routeUrl: '/AssociationBrief'}, {
+          {title: '首页', routeUrl: '/'}, {title: '协会简介', routeUrl: '/AssociationBrief'},{title: '加入协会', routeUrl: '/joinUs'}, {
             title: '新闻动态',
             routeUrl: '/NewsInformation'
           },
@@ -98,8 +106,35 @@
     },
     computed: {
       ...mapGetters([
-        'result'
-      ])
+        'seachWordsResult'
+      ]),
+      colorNum(){
+        if(this.$route.name==='indexF'){
+          return 0
+        }else if(this.$route.name==='AssociationBrief'){
+          return 1
+        }else if(this.$route.name==='joinUs'){
+          return 2
+        }else if(this.$route.name==='NewsInformation'){
+          return 3
+        }else if(this.$route.name==='ArtLibrary'){
+          return 4
+        }else if(this.$route.name==='concatUs'){
+          return 5
+        }else if(this.$route.name==='evaluation'){
+          return 6
+        }else if(this.$route.name==='auction'){
+          return 7
+        }else if(this.$route.name==='AntiqueMarket'){
+          return 8
+        }else if(this.$route.name==='NoticeBulletin'){
+          return 9
+        }else if(this.$route.name==='videoList'){
+          return 10
+        }else{
+
+        }
+      }
     },
     components: {
       vSwiper
@@ -109,6 +144,9 @@
       this.getCdate()
     },
     methods: {
+      ...mapActions([
+        'seachWordsActions'
+      ]),
       myclock() {
         let now = new Date();
         let year = now.getFullYear();
@@ -245,15 +283,19 @@
 //        }
         this.iscTime = GetLunarDay(yy, mm, dd)
       },
-      changeRoute(item) {
+      changeRoute(item,key) {
+//        this.colorNum=key
         this.$router.push(item.routeUrl)
       },
-      handleCommand(item) {
-        if(item=='a'){
-          this.$router.push('/joinUs')
-        }else{
-          this.$router.push('/callUs')
+      seachData(){
+        let data={
+          keyword:Base64.encode(this.isInput)
         }
+        this.seachWordsActions(data)
+        this.$router.push('/seachList')
+      },
+      toLogin(){
+        window.open('http://www.baidu.com')
       }
     }
   }
@@ -293,13 +335,13 @@
       }
       .date {
         position: relative;
-        p:first-child {
-          margin-top: 15px;
+        p:nth-child(2) {
+          margin-top: 5px;
           line-height: 26px;
           font-size: 18px;
         }
-        p:nth-child(2) {
-          margin: 10px 0;
+        p:nth-child(3) {
+          margin: 8px 0;
           line-height: 26px;
           font-size: 18px;
         }
@@ -347,6 +389,15 @@
         line-height: 36px;
         padding: 0 15px;
         margin-right: 30px;
+        &.activeColor{
+          color: #333333;
+          background-color: #ffffff;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          -ms-border-radius: 10px;
+          -o-border-radius: 10px;
+          border-radius: 10px;
+        }
         &:last-child {
           margin: 0;
         }

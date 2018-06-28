@@ -1,19 +1,22 @@
 <template>
-      <div class="card" v-if="leftData.length>0">
-        <div class="rTop">
-          <h4>{{title}}</h4>
-          <span class="cu" @click="toMove()">更多</span>
+      <div class="card">
+        <!--<div class="rTop">-->
+          <!--<h4>{{title}}</h4>-->
+          <!--<span class="cu" @click="toMove()">更多</span>-->
+        <!--</div>-->
+        <div v-if="seachWordsResult.list.length===0 || !seachWordsResult.list">
+          暂无数据......
         </div>
-        <ul style="flex-wrap: wrap;">
-         <!-- <li v-for="(item,index) in leftData"  v-if="leftData.length===5" style="width: 190px;padding: 5px;" class="cu fiveTe" :class="{activeFive : index===4}" @click="toDetial(item)">
-            <img :src="item.titleImg" alt="" style="display: block;width: 100%;height: 190px;">
-            <p>{{item.title}}</p>
-          </li>-->
-         <li v-for="(item,index) in leftData" v-if="leftData.length<=6" style="width: 190px;padding: 5px;" class="cu" :class="{addmar :index!==5}" @click="toDetial(item)">
+        <ul style="flex-wrap: wrap;" v-else>
+      <!--    <li v-for="(item,index) in seachWordsResult.list"  v-if="leftData.length===5" style="width: 190px;padding: 5px;" class="cu fiveTe" :class="{activeFive : index===4}" @click="toDetial(item)">
             <img :src="item.titleImg" alt="" style="display: block;width: 100%;height: 190px;">
             <p>{{item.title}}</p>
           </li>
-          <li v-for="(item,index) in leftData" v-if="leftData.length>6" style="width: 190px;padding: 5px;" class="cu teimg" @click="toDetial(item)">
+         <li v-for="(item,index) in seachWordsResult.list" v-if="leftData.length===6" style="width: 190px;padding: 5px;" class="cu" :class="{addmar :index!==5}" @click="toDetial(item)">
+            <img :src="item.titleImg" alt="" style="display: block;width: 100%;height: 190px;">
+            <p>{{item.title}}</p>
+          </li>-->
+          <li v-for="(item,index) in seachWordsResult.list" style="width: 190px;padding: 5px;" class="cu teimg" @click="toDetial(item)">
             <img :src="item.titleImg" alt="" style="display: block;width: 100%;height: 190px;">
             <p>{{item.title}}</p>
           </li>
@@ -51,7 +54,9 @@
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'seachWordsResult'
+      ])
     },
     components: {},
     methods:{
@@ -63,11 +68,7 @@
       },
       toDetial(item){
         this.$router.push('/artDetial?id='+item.id)
-        this.$store.commit('ARTS_DETIALS_CHANGE',item.content)
       },
-      toMove(){
-        this.$router.push('/morePai?type='+this.type)
-      }
     }
   }
 </script>

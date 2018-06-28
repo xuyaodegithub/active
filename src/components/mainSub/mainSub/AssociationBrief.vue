@@ -19,6 +19,9 @@
   import {mapActions} from 'vuex'
   import vzhang from '../sonSub/zhangcheng.vue'
   import vjie from '../sonSub/jieshao.vue'
+  import vzuzhi from '../sonSub/zuzhi.vue'
+  import vzhuanjia from '../sonSub/zhuanjia.vue'
+  import vlishi from '../sonSub/lishihui.vue'
   export default {
     name: 'AssociationBrief',
     data() {
@@ -28,9 +31,9 @@
         bleft: [
           {title: '协会简介', url: 'vjie'},
           {title: '协会章程', url: 'vzhang'},
-          {title: '组织机构', url: 'vjie'},
-          {title: '专家顾问委员会', url: 'vzhang'},
-          {title: '理事会', url: 'vjie'}
+          {title: '组织机构', url: 'vzuzhi'},
+          {title: '专家顾问委员会', url: 'vzhuanjia'},
+          {title: '理事会', url: 'vlishi'}
         ]
       }
     },
@@ -38,7 +41,7 @@
       ...mapGetters([])
     },
     components: {
-      vzhang,vjie
+      vzhang,vjie,vzuzhi,vzhuanjia,vlishi
     },
     methods:{
       changTitle(val,index){

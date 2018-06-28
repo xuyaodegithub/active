@@ -1,6 +1,19 @@
 <template>
   <div class="concatUs">
-    <v-card :leftData="leftData"></v-card>
+    <v-surper :leftData="superpersonsResult.list" :isShow="false"></v-surper>
+    <div class="block">
+      <el-pagination
+        small
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :pager-count="5"
+        :current-page="currentPage4"
+        :page-sizes="[16, 30, 40, 50]"
+        :page-size="rows"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="superpersonsResult.pager ? superpersonsResult.pager.totalRows : 0">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -8,66 +21,48 @@
   import {mapGetters} from 'vuex'
   import {mapActions} from 'vuex'
   import vCard from '../../publicSub/cardSub.vue'
+  import vSurper from '../../publicSub/superStar.vue'
 
   export default {
     name: 'concatUs',
     data() {
       return {
-        leftData: {
-          title: '名家风采', type: true, block: true, item: [
-            {
-              title: '瓷器', imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '玉器',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '字画',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '金属器',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              imgUrl:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-          ]
-        },
+        currentPage4:1,
+        rows:16,
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'superpersonsResult'
+      ])
+    },
+    mounted(){
+      this.getsupList()
     },
     components: {
-      vCard
+      vCard,vSurper
+    },
+    methods:{
+      ...mapActions([
+        'superpersonsActions'
+      ]),
+      handleSizeChange(val) {
+//        console.log(`每页 ${val} 条`);
+        this.rows = val
+        this.getsupList()
+      },
+      handleCurrentChange(val) {
+//        console.log(`当前页: ${val}`);
+        this.currentPage4 = val
+        this.getsupList()
+      },
+      getsupList(){
+        let data={
+          page:this.currentPage4,
+          limit:this.rows
+        }
+        this.superpersonsActions(data)
+      }
     }
   }
 </script>

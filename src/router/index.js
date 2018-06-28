@@ -59,7 +59,7 @@ export default new Router({
     {
       path: '/joinUs',
       name: 'joinUs',
-      component: () => import(/* webpackChunkName: "callUs" */ '@/components/mainSub/mainSub/jionUs')
+      component: () => import(/* webpackChunkName: "jionUs" */ '@/components/mainSub/mainSub/jionUs')
     },
     {
       path: '/callUs',
@@ -74,17 +74,32 @@ export default new Router({
     {
       path: '/artDetial',
       name: 'artDetial',
-      component: () => import(/* webpackChunkName: "newsDetial" */ '@/components/mainSub/detailPage/artDetial')
+      component: () => import(/* webpackChunkName: "artDetial" */ '@/components/mainSub/detailPage/artDetial')
+    },
+    {
+      path: '/supDetial',
+      name: 'supDetial',
+      component: () => import(/* webpackChunkName: "supDetial" */ '@/components/mainSub/detailPage/supDetial')
+    },
+    {
+      path: '/morePai',
+      name: 'morePai',
+      component: () => import(/* webpackChunkName: "morePai" */ '@/components/mainSub/mainSub/morePai')
+    },
+    {
+      path: '/seachList',
+      name: 'seachList',
+      component: () => import(/* webpackChunkName: "seachList" */ '@/components/publicSub/seachList')
     },
   ],
   scrollBehavior (to, from, savedPosition) {//路由切换时滚轮位置//scrollBehavior 方法接收 to 和 from 路由对象。第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用。
     // return 期望滚动到哪个的位置
     if (savedPosition) {
       return savedPosition
-    } else if(to.name==='newsDetial' || to.name==='artDetial' || to.name==='joinUs' || to.name==='callUs' ){
+    } else if(to.name==='newsDetial' || to.name==='artDetial' || to.name==='joinUs' || to.name==='callUs' || to.name==='supDetial' ){
       return { x: 0, y:500 }
     }else{
-
+      // return { x: 0, y:0 }
     }
   }
 })

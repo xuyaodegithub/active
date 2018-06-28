@@ -1,19 +1,17 @@
 <template>
-  <div class="newsD">
+  <div class="artDetail">
     <div class="back">
       <span class="cu icon iconfont icon-fanhui1" @click="back()">返回</span>
     </div>
-    <div style="padding: 15px 140px;" v-html="newsDetialsResult">
+    <div style="padding: 15px 140px;" v-html="supDetialsResult">
      <!-- <div class="title">
-        李克强会见中拉论坛首届部长级会议拉方代表团团长
+        小叶紫檀笔洗111111111111
       </div>
-      <p class="time">发布时间:<i>2018-08-18</i>18:34</p>
       <div class="imgD">
         <img :src="item.url" alt="" v-for="(item,index) in imgData">
       </div>
       <div class="content">
         <p>
-          李克强表示，中拉始终坚持相互尊重、平等相待、真诚合作、互利共赢，双方关系发展前景广阔。昨天，习近平主席在会议开幕式上就推进中拉整体合作提出四点重要意见。双方要以此次会议为契机，谋划好今后一个时期中拉关系与合作发展的新篇章，使中拉整体合作与中国同拉美和加勒比共同体成员国的双边合作相互带动、平行推进。
           李克强表示，中拉始终坚持相互尊重、平等相待、真诚合作、互利共赢，双方关系发展前景广阔。昨天，习近平主席在会议开幕式上就推进中拉整体合作提出四点重要意见。双方要以此次会议为契机，谋划好今后一个时期中拉关系与合作发展的新篇章，使中拉整体合作与中国同拉美和加勒比共同体成员国的双边合作相互带动、平行推进。
           李克强表示，中拉始终坚持相互尊重、平等相待、真诚合作、互利共赢，双方关系发展前景广阔。昨天，习近平主席在会议开幕式上就推进中拉整体合作提出四点重要意见。双方要以此次会议为契机，谋划好今后一个时期中拉关系与合作发展的新篇章，使中拉整体合作与中国同拉美和加勒比共同体成员国的双边合作相互带动、平行推进。
           　</p>
@@ -38,7 +36,7 @@
   import {mapActions} from 'vuex'
 
   export default {
-    name: 'newsD',
+    name: 'artDetail',
     data() {
       return {
         imgData: [
@@ -53,12 +51,12 @@
     },
     computed: {
       ...mapGetters([
-        'newsDetialsResult'
+        'supDetialsResult'
       ])
     },
     components: {},
-    activated(){
-
+    mounted(){
+//      alert(this.$route.query.id)
     },
     methods:{
       back(){
@@ -88,11 +86,11 @@
     /*margin-bottom: 10px;*/
   }
 
-  .time {
+ /* .time {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 10px;
-  }
+  }*/
 
   .imgD {
     display: -webkit-box;
