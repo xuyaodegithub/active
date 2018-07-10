@@ -149,9 +149,9 @@
             //  job:this.isObj.toBase64(),
             passwork: Base64.encode(this.isPassword),
             loginName: Base64.encode(this.isNumber)
-
           }
-          if (!data.name || !data.cardNo || !data.company || !data.mobile || !data.address || !data.job || !data.passwork) {
+          console.log(this.isName)
+          if (!this.isName.trim() || !data.cardNo || !data.mobile || !data.job || !data.passwork) {
             this.$message({
               message: '请把信息填写完整',
               type: "error"

@@ -97,9 +97,9 @@ export default new Router({
     if (savedPosition) {
       return savedPosition
     } else if(to.name==='newsDetial' || to.name==='artDetial' || to.name==='joinUs' || to.name==='callUs' || to.name==='supDetial' ){
-      return { x: 0, y:500 }
+      return { x: 0, y:580 }
     }else{
-      // return { x: 0, y:0 }
+       return { x: 0, y:0 }
     }
   }
 })

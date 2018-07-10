@@ -12,6 +12,9 @@
     <div class="margin mbottom">
       <p>首页 | 协会简介 | 联系我们</p>
     </div>
+    <div class="lastOne">
+      青鸟科技提供技术支持
+    </div>
   </div>
 </template>
 
@@ -80,5 +83,11 @@ export default {
     line-height:40px;
     margin-top:10px;
     /*margin-bottom: 40px;*/
+  }
+  .lastOne{
+    text-align: center;
+    font-size: 12px;
+    color: #777777;
+    padding-bottom: 20px;
   }
 </style>

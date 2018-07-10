@@ -68,6 +68,7 @@
       },
       toDetial(item){
         this.$router.push('/artDetial?id='+item.id)
+        this.$store.commit('ARTS_DETIALS_CHANGE',item.content)
       },
     }
   }

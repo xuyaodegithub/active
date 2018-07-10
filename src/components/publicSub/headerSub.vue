@@ -5,24 +5,24 @@
         <!--您好！ 请先  &nbsp&nbsp&nbsp&nbsp <span style="color:#ee0707;">登录</span>-->
       <!--</div>-->
       <div class="top margin">
-        <div class="logo Mright" style="margin: 34px 15px 0 10px;">
-          <img src="static/ball.png" alt="" style="width: 80px;height: 80px;">
+        <div class="logo Mright" style="margin: 50px 15px 0 110px;">
+          <img src="static/ball.png" alt="" style="width: 100px;height: 100px;">
         </div>
-        <div class="title Mright" style="margin: 39px 500px 0 0;">
+        <div class="title Mright" style="margin: 24px 100px 0 0;">
           <!--<h4><img src="static/logo.png" alt="" style="margin-left: -100px;"></h4>-->
-          <p><img src="static/ziti.png" alt="" style="height:80px;"></p>
+          <p><img src="static/ziti.png" alt="" style="width: 400px;margin-left: 0px;height: 200px;"></p>
         </div>
         <div class="seach Mright" style="margin: 70px 29px 0 0;">
           <el-input v-model="isInput" placeholder="请输入感兴趣的内容" prefix-icon="el-icon-search" size="small"></el-input>
           <el-button type="danger" size="small" style="display: inline-block;" @click="seachData()">搜索</el-button>
         </div>
-        <div class="date">
-          <p style="font-size: 14px;text-align: right;line-height: 18px;padding-top: 5px;">
+        <div class="date" style="margin-top: 50px;">
+          <p style="font-size: 14px;text-align: right;line-height: 18px;padding-top: 5px;margin-top: -25px;margin-bottom: 25px">
             您好！ 请先  &nbsp&nbsp&nbsp <span style="color:#ee0707;" class="cu" @click="toLogin()">登录</span>
           </p>
           <p>{{isTime}}</p>
           <p>{{iscTime}}</p>
-          <div class="imgSS" style="display: inline-block;">
+          <div class="imgSS" style="display: inline-block;margin-top: 20px;">
             <i class="icon iconfont icon-erweima"></i>
             扫一扫
             <img :src="imgUrl" alt="" style="width: 150px;height: 150px;">
@@ -295,7 +295,7 @@
         this.$router.push('/seachList')
       },
       toLogin(){
-        window.open('http://www.baidu.com')
+        window.open('http://www.hdscjxh.com/picture_server/a')
       }
     }
   }
@@ -338,12 +338,13 @@
         p:nth-child(2) {
           margin-top: 5px;
           line-height: 26px;
-          font-size: 18px;
+          font-size: 20px;
+          margin-bottom: 20px;
         }
         p:nth-child(3) {
           margin: 8px 0;
           line-height: 26px;
-          font-size: 18px;
+          font-size: 20px;
         }
         img {
           position: absolute;
