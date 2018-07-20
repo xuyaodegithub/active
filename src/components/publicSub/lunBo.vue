@@ -32,9 +32,13 @@
       ])
     },
     mounted() {
-
+      this.indexDataActions()
     },
-    methods: {}
+    methods: {
+      ...mapActions([
+        'indexDataActions'
+      ])
+    }
   }
 </script>
 

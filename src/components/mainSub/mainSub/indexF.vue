@@ -100,50 +100,6 @@
     data() {
       return {
         inTitle: '当前拍品',
-        leftData: {
-          title: '名家风采', type: false, item: [
-            {
-              title: '瓷器',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '瓷器',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '瓷器',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527616250063&di=885fb868e9301e429fc4e5d5b31f16e7&imgtype=0&src=http%3A%2F%2Fpic.bestb2b.com%2Ff28a0d5b1a0f7141572a4b4837073181.jpg'
-            },
-            {
-              title: '玉器',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182727570&di=142c0b3eb232c9b1dfdf6c7a2c5597b0&imgtype=0&src=http%3A%2F%2Fimg000.hc360.cn%2Fg8%2FM06%2FCC%2F94%2FwKhQtlQasGyEXM18AAAAAIWKz4Y519.jpg'
-            },
-            {
-              title: '字画',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182727568&di=6e4eb061e274af3d89f46f7fbdf6b102&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D92387e7a80d4b31ce4319cfbeeae4213%2F09fa513d269759eee5b805f2b9fb43166d22df1b.jpg'
-            },
-            {
-              title: '金属器',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182825367&di=85031dfaf7b2708729b5160f50854992&imgtype=jpg&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D894973757%2C3687128431%26fm%3D214%26gp%3D0.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182727567&di=b85dfedb5ca8c94a1bcbfad2dae0bfcf&imgtype=0&src=http%3A%2F%2Fimg000.hc360.cn%2Fm1%2FM02%2F6D%2F6F%2FwKhQcFQ09UCEF6rwAAAAAF4xVOk693.jpg'
-            },
-            {
-              title: '杂项',
-              imgName: '',
-              titleImg: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1527182727567&di=b85dfedb5ca8c94a1bcbfad2dae0bfcf&imgtype=0&src=http%3A%2F%2Fimg000.hc360.cn%2Fm1%2FM02%2F6D%2F6F%2FwKhQcFQ09UCEF6rwAAAAAF4xVOk693.jpg'
-            },
-          ]
-        },
         shareimg: {
           title: '藏品鉴赏', type: true, item: [
             {

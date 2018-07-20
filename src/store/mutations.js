@@ -125,6 +125,9 @@ const mutations = {
     state.editor.joinusMM.mobile=data.mobile
     state.editor.joinusMM.loginName=data.loginName
     state.editor.joinusMM.passwork=data.passwork
+    state.editor.joinusMM.promoters=data.promoters
+    state.editor.joinusMM.promotersPhone=data.promotersPhone
+    state.editor.joinusMM.introducer=data.introducer
   },
   //seach
   SET_SEACH_WORDS(state,data){

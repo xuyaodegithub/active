@@ -1,7 +1,7 @@
 <template>
       <div class="card">
           <div class="Cheader">
-            <h4>艺术文库</h4>
+            <h4>会员藏品</h4>
             <p @click="toMove()" class="cu">更多</p>
           </div>
         <ul>

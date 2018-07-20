@@ -1,7 +1,7 @@
 <template>
   <div class="Art">
     <div class="Atop">
-      <h4>艺术文库</h4>
+      <h4>会员藏品</h4>
       <ul>
         <li v-for="(item,index) in navList" class="cu" :class="{activeLi : whichkey===index}"
             @click="changeType(item,index)">

@@ -93,7 +93,7 @@
             title: '新闻动态',
             routeUrl: '/NewsInformation'
           },
-          {title: '艺术文库', routeUrl: '/ArtLibrary'}, {title: '名家风采', routeUrl: '/concatUs'}, {
+          {title: '会员藏品', routeUrl: '/ArtLibrary'}, {title: '名家风采', routeUrl: '/concatUs'}, {
             title: '鉴定与评估',
             routeUrl: '/evaluation'
           }, {title: '拍卖', routeUrl: '/auction'},

@@ -35,6 +35,15 @@
       <p><label>单位名称:</label>
         <el-input v-model="isAdd" placeholder="请输入内容" size="small"></el-input>
       </p>
+      <p><label>介绍人:</label>
+        <el-input v-model="promoters" placeholder="请输入内容" size="small"></el-input>
+      </p>
+      <p><label>介绍人联系方式:</label>
+        <el-input v-model="promotersPhone" placeholder="请输入内容" size="small"></el-input>
+      </p>
+      <p><label>协会拓展人:</label>
+        <el-input v-model="introducer" placeholder="请输入内容" size="small"></el-input>
+      </p>
       <div class="imgPay">
         <img :src="imgUrl" alt="">
         <span style="font-size: 18px;color: red;display: block;line-height: 14px">转账请备注手机号码!</span>
@@ -69,6 +78,9 @@
         upOrNo2: false,
         isTimer: '',
         startTime: 0,
+        promoters:'',
+        promotersPhone:'',
+        introducer:'',
         imgUrl: 'static/giveMoney.jpg',
         options: [{
           value: '会员',
@@ -148,7 +160,10 @@
             job: Base64.encode(this.isObj),
             //  job:this.isObj.toBase64(),
             passwork: Base64.encode(this.isPassword),
-            loginName: Base64.encode(this.isNumber)
+            loginName: Base64.encode(this.isNumber),
+            introducer:Base64.encode(this.introducer),
+            promoters:Base64.encode(this.promoters),
+            promotersPhone:Base64.encode(this.promotersPhone),
           }
           console.log(this.isName)
           if (!this.isName.trim() || !data.cardNo || !data.mobile || !data.job || !data.passwork) {
@@ -202,7 +217,7 @@
       line-height: 36px;
       label {
         display: inline-block;
-        width: 100px;
+        width: 120px;
         text-align: right;
       }
       p {
