@@ -4,7 +4,7 @@
     <div class="adress">
       <p><label>账号:</label>
         <el-input v-model="isNumber" placeholder="请输入内容" size="small"></el-input>
-        <span style="font-size: 14px;color: red;line-height: 14px">(请输入6-16位由字母数字组成的账号)</span>
+        <span style="font-size: 14px;color: red;line-height: 14px">(可填写本人手机号码)</span>
       </p>
       <p><label>密码:</label>
         <el-input v-model="isPassword" placeholder="请输入内容" size="small" type="password"></el-input>
@@ -30,7 +30,17 @@
             :value="item.value">
           </el-option>
         </el-select>
-        <span style="font-size: 14px;color: red;display: block;line-height: 14px">(会员500/5年，理事2000/5年，常务理事5000/5年，理事单位20000/5年，副会长10000/5年)</span>
+        <span style="font-size: 14px;color: red;display: block;line-height: 14px;margin-left: -20px;">(会费五年一次性收取，标准为：会员500元；理事2000元；常务理事5000元；副会长10000元；理事单位20000元)</span>
+      </p>
+      <p><label>藏品门类:</label>
+        <el-select v-model="isClassCP" placeholder="请选择" size="small">
+          <el-option
+            v-for="item in options2"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </p>
       <p><label>单位名称:</label>
         <el-input v-model="isAdd" placeholder="请输入内容" size="small"></el-input>
@@ -74,6 +84,7 @@
         isAdress: '',
         isObj: '',
         isAdd: '',
+        isClassCP:'',
         upOrNo: false,
         upOrNo2: false,
         isTimer: '',
@@ -97,6 +108,28 @@
         }, {
           value: '副会长',
           label: '副会长'
+        }],
+       options2: [{
+          value: '瓷器',
+          label: '瓷器'
+        }, {
+          value: '字画',
+          label: '字画'
+        }, {
+          value: '珠宝玉器',
+          label: '珠宝玉器'
+        }, {
+          value: '金属器',
+          label: '金属器'
+        }, {
+          value: '钱币',
+          label: '钱币'
+        }, {
+          value: '宗教艺术',
+          label: '宗教艺术'
+        }, {
+          value: '杂项',
+          label: '杂项'
         }],
       }
     },
@@ -164,9 +197,10 @@
             introducer:Base64.encode(this.introducer),
             promoters:Base64.encode(this.promoters),
             promotersPhone:Base64.encode(this.promotersPhone),
+            category:Base64.encode(this.isClassCP),
           }
           console.log(this.isName)
-          if (!this.isName.trim() || !data.cardNo || !data.mobile || !data.job || !data.passwork) {
+          if (!this.isName.trim() || !data.cardNo || !data.mobile || !data.job || !data.passwork || !data.category) {
             this.$message({
               message: '请把信息填写完整',
               type: "error"
@@ -244,7 +278,7 @@
       /*display: -webkit-flex;*/
       /*display: flex;*/
       position: absolute;
-      right: 350px;
+      right: 230px;
       top: 70px;
       width: 300px;
       height: 450px;

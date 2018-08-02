@@ -26,6 +26,7 @@
             <i class="icon iconfont icon-erweima"></i>
             扫一扫
             <img :src="imgUrl" alt="" style="width: 150px;height: 150px;">
+            <img :src="imgUrlm" alt="" style="width: 150px;height: 150px;">
           </div>
         </div>
       </div>
@@ -82,6 +83,7 @@
     data() {
       return {
         imgUrl: 'static/ewmll.jpg',
+        imgUrlm: 'static/logoOthers.jpg',
 //        colorNum:0,
         isTime: '',
         msg: '',
@@ -346,17 +348,20 @@
           line-height: 26px;
           font-size: 20px;
         }
-        img {
+        img{
           position: absolute;
           bottom: -140px;
           display: none;
-          z-index: 111;
+          z-index: 1111;
+        }
+        img:nth-child(2){
+          left:-35px;
         }
         i {
           font-size: 28px;
         }
         .imgSS:hover img {
-          display: block;
+          display: inline-block;
         }
       }
     }

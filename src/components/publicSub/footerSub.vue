@@ -4,7 +4,7 @@
       <p>友情链接</p>
       <ul>
         <li v-for="(item, index) in msg" :key="index" class="cu" @click="toUrl(item)">
-          {{item.title}}
+          <img :src="item.imgUrl" alt="">
         </li>
       </ul>
     </div>
@@ -26,8 +26,8 @@ export default {
   data () {
     return {
       msg: [
-        {title:'国家AAAAA级旅游景区—横店影视城官网，提供横店影视城门票、酒店、旅游套餐等预订服务',url:' http://www.hengdianworld.com/'},
-        {title:'横店集团控股有限公司',url:'http://www.hengdian.com/'},{title:'圆明新园|横店圆明新园门票|横店圆明园新园官方网站 ',url:' http://www.hdyuanmingxinyuan.com/'},
+        {title:'国家AAAAA级旅游景区—横店影视城官网，提供横店影视城门票、酒店、旅游套餐等预订服务',url:' http://www.hengdianworld.com/',imgUrl:'static/yingshi.png'},
+        {title:'横店集团控股有限公司',url:'http://www.hengdian.com/',imgUrl:'static/hendian.png'},{title:'圆明新园|横店圆明新园门票|横店圆明园新园官方网站 ',url:' http://www.hdyuanmingxinyuan.com/',imgUrl:'static/yuanming.jpg'},
 //        {title:'浙江省收藏家协会',url:''},{title:'安徽省收藏家协会',url:''},
       ],
 
@@ -69,8 +69,12 @@ export default {
     margin-left: 20px;
     font-size: 14px;
     li{
-      border-bottom:1px solid #333333;
+      /*border-bottom:1px solid #333333;*/
       margin-right: 50px;
+      line-height:100px;
+      img {
+        display: inline-block;
+      }
     }
   }
 }
