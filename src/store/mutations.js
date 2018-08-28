@@ -149,6 +149,10 @@ const mutations = {
   ARTS_DETIALS_CHANGE(state,data){
     state.page.artsDetialsResult=data
   },
+  //title
+  SET_TITLLE_RESULT(state,data){
+    state.page.titlleResult=data.title
+  }
 
 }
 

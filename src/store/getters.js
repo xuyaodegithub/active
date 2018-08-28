@@ -79,6 +79,10 @@ const getters = {
   artsDetialsResult: state => {
     return state.page.artsDetialsResult
   },
+  //title
+  titlleResult: state => {
+    return state.page.titlleResult
+  }
 }
 
 export default getters

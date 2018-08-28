@@ -10,7 +10,7 @@
     </div>
     <div class="redSsolid"></div>
     <div class="margin mbottom">
-      <p>首页 | 协会简介 | 联系我们</p>
+      <p><span class="cu" @click="toPage(1)">首页</span> | <span class="cu" @click="toPage(2)">协会简介</span> | <span class="cu" @click="toPage(3)">联系我们</span></p>
     </div>
     <div class="lastOne">
       青鸟科技提供技术支持
@@ -41,6 +41,17 @@ export default {
   methods:{
     toUrl(item){
       window.open(item.url)
+    },
+    toPage(key){
+      if(key===1){
+        this.$router.push('/')
+      }else if(key===2){
+        this.$store.commit('SET_TITLLE_RESULT',{title:'vjie'})
+        this.$router.push('/AssociationBrief')
+      }else{
+        this.$store.commit('SET_TITLLE_RESULT',{title:'vzhang'})
+        this.$router.push('/AssociationBrief')
+      }
     }
   }
 }

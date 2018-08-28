@@ -8,7 +8,7 @@
     </ul>
     <div class="bcontent">
       <keep-alive>
-        <component :is="title"></component>
+        <component :is="titlleResult"></component>
       </keep-alive>
     </div>
   </div>
@@ -30,23 +30,36 @@
         key:0,
         bleft: [
           {title: '协会简介', url: 'vjie'},
-          {title: '协会章程', url: 'vzhang'},
           {title: '组织机构', url: 'vzuzhi'},
           {title: '专家顾问委员会', url: 'vzhuanjia'},
-          {title: '理事会', url: 'vlishi'}
+          {title: '理事会', url: 'vlishi'},
+          {title: '联系地址', url: 'vzhang'},
+
         ]
       }
     },
     computed: {
-      ...mapGetters([])
+      ...mapGetters([
+        'titlleResult'
+      ])
+    },
+    watch:{
+      titlleResult(newVal,oldVal){
+        let _self=this
+        this.bleft.forEach((val,index)=>{
+          if(val.url===newVal){
+            _self.key=index
+          }
+        })
+      }
     },
     components: {
       vzhang,vjie,vzuzhi,vzhuanjia,vlishi
     },
     methods:{
       changTitle(val,index){
-        this.key=index
-        this.title=val.url
+//        this.key=index
+        this.$store.commit('SET_TITLLE_RESULT',{title:val.url})
       }
     }
   }

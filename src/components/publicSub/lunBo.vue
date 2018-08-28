@@ -1,7 +1,7 @@
 <template>
   <div class="isSwiper">
     <div class="margin">
-      <el-carousel :interval="2000" arrow="always">
+      <el-carousel :interval="4500" arrow="always">
         <el-carousel-item v-for="(item,index) in indexDataResult.obj.bigPictureList" :key="index">
           <img :src="item.titleImg" alt="">
         </el-carousel-item>

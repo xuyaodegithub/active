@@ -140,6 +140,8 @@ const state = {
     newsDetialsResult: '',
     //艺术文库详情
     artsDetialsResult: '',
+    //title
+    titlleResult:'vjie'
 
   }
 }

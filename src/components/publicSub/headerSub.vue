@@ -288,6 +288,9 @@
       changeRoute(item,key) {
 //        this.colorNum=key
         this.$router.push(item.routeUrl)
+        if(item.routeUrl==='/AssociationBrief'){
+          this.$store.commit('SET_TITLLE_RESULT',{title:'vjie'})
+        }
       },
       seachData(){
         let data={
